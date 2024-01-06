@@ -1,0 +1,79 @@
+{% extends "blend.html" %}
+{% block start %}
+
+<style>
+    .ax{
+        text-align: -webkit-center;
+    }
+    .vb{
+      background-color: rgb(14, 10, 10);
+      margin-bottom: -0.3%;
+      margin-top: -0.2%;
+    }
+    .buttons {
+      margin-bottom: 10px; /* Adjust the margin as needed */
+    }
+
+    button {
+      margin: 5px;
+    }
+
+    .bnm{
+        max-width: 300px;
+    max-height: 426px;
+    }
+
+
+</style>
+<div class="vb items-center p-4 mb-4 text-sm text-green-800 bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert">
+  
+    <center>
+    <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
+    </svg>&nbsp;&nbsp; <span>Reload the page </span>to access new videos.!</span>
+  </center>
+  </div>
+<section class="text-gray-400 bg-gray-900 body-font">
+    <div class="container px-5 py-24 mx-auto">
+        <div class="flex flex-wrap -m-4">
+            {% for item in links %}
+            <div class="lg:w-1/4 md:w-1/2 p-5 w-full border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 w-12 sm:w-12">
+                <a class="block relative h-48 rounded overflow-hidden" href="{{item.link}}">
+                    <img src="{{ item.thumb }}" onerror="this.onerror=null;this.src='https://i0.wp.com/boingboing.net/wp-content/uploads/2018/07/Youtube-Fake-News-1.jpg?fit=1280%2C720&ssl=1';" class="object-cover object-center w-full h-full block" frameborder="0" width="100%" height="100%">
+                </a>
+                <div class="mt-4 ax">
+                    <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{ item.views }}</h3>
+                    <h2 class="text-white text-lg font-medium title-font mb-4">{{ item.content }}</h2>
+                <div class="buttons">
+                    <center><a href="{{item.link}}">
+                    <button class="inline-flex text-white bg-red-900 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded text-lg">Play</button></a>&nbsp;&nbsp;
+                    <a href="{{item.download}}">
+                        <button class="inline-flex text-white bg-blue-900 border-0 py-2 px-5 focus:outline-none hover:bg-indigo-600 rounded text-lg">Download Now</button></a>
+                    <!-- You can add more information here, such as the title of the link -->
+                    <!-- For example: --></center>
+                </div>
+                </div>
+            </div>
+
+            {% endfor %}
+        </div>
+        <br>
+        <br><center>
+        <button id="refreshButton" class="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">More Videos</button></center>
+    </div>
+</section>
+
+<script>
+    // JavaScript to refresh the page when the button is clicked
+    document.getElementById('refreshButton').addEventListener('click', function () {
+        window.scrollTo(0, 0);
+        location.reload();
+    });
+
+    document.getElementById('homeButton').addEventListener('click', function () {
+        window.scrollTo(0, 0);
+    });
+</script>
+
+
+{% endblock %}

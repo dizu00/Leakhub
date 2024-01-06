@@ -1,0 +1,48 @@
+{% extends "blend.html" %}
+{% block start %}
+<style>
+    .mobile{
+        height: 2000px;
+    }
+    .bottom-buttons {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      padding: 10px;
+      box-sizing: border-box;
+      background-color: #f0f0f0;
+      text-align: center;
+    }
+</style>
+<section class="mobile text-gray-400 bg-gray-900 body-font">
+    <div class="container px-5 py-24 mx-auto">
+      <div class="flex flex-wrap -m-4">
+        {% for item in alldata %}
+        <div class="lg:w-1/4 md:w-1/2 p-4 w-full">
+          <a class="block relative h-48 rounded overflow-hidden" href="media/{{item.file}}">
+            {% if item.ck == "mp4" %}
+              <video controls class="object-cover object-center w-full h-full block">
+                <source src="media/{{item.file}}" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            {% else %}
+              <img alt="ecommerce" class="object-cover object-center w-full h-full block" src="media/{{item.file}}">
+            {% endif %}
+          </a>
+          <div class="mt-4">
+            <h2 class="text-white title-font text-lg font-medium">{{item.title}} - {{item.description}}
+              <h3 class="text-gray-500 text-xs tracking-widest title-font mb-1">{{item.views}}</h3>
+            </h2>
+            <a href="media/{{item.file}}" download="{{item.file}}">
+              <img src="media/images/download.png" class="inline-flex text-white bg-blue-900 border-0 py-2 px-5 focus:outline-none hover:bg-red-600 rounded text-lg ml-auto" style="height: 44px;"/>
+            </a>
+            <p class="mt-1"></p>
+          </div>
+        </div>
+      {% endfor %}
+
+      </div>
+    </div>
+  </section>
+{% endblock %}
